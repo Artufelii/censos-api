@@ -1,0 +1,15 @@
+.searcher {
+	display: flex;
+}
+
+.searcher input {
+	width: 300px;
+	outline: none;
+}
+
+.searcher button {
+	width: 70px;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
