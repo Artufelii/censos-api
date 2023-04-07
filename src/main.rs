@@ -6,6 +6,7 @@ mod auth;
 mod business;
 mod notifiers;
 mod zones;
+mod migrations;
 
 use std::path::Path;
 use std::path::PathBuf;
@@ -18,6 +19,7 @@ use crate::auth::*;
 use crate::business::*;
 use crate::notifiers::*;
 use crate::zones::*;
+use crate::migrations::*;
 
 pub struct CORS;
 
@@ -50,6 +52,10 @@ async fn files(file: PathBuf) -> Option<NamedFile> {
 
 #[launch]
 fn rocket() -> _ {
+    business_table();
+    zones_table();
+    notifiers_table();
+    
     rocket::build()
         .attach(CORS)
         .mount("/", routes![index, files])
